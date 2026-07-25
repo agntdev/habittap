@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/list",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Show all active habits with today's status and next reminder"
+            }
+          }
+        ],
+        "send": {
+          "text": "/list"
+        }
+      }
+    ]
+  }
+]
