@@ -5,9 +5,9 @@
       {
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "Start creating a new habit with schedule configuration"
+              "text": "What do you want to track? Send a short habit name."
             }
           }
         ],
@@ -15,6 +15,19 @@
           "callback": "habit:new"
         }
       }
+    ]
+  }
+  ,
+  {
+    "name": "habit creation and duplicate check-in prevention",
+    "steps": [
+      { "send": { "callback": "habit:new" }, "expect": [{ "method": "editMessageText", "payload": { "text": "What do you want to track? Send a short habit name." } }] },
+      { "send": { "text": "Read" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Choose how often you want to do it." } }] },
+      { "send": { "callback": "habit:schedule:daily" }, "expect": [{ "method": "editMessageText", "payload": { "text": "Send the reminder time, for example 09:00." } }] },
+      { "send": { "text": "09:00" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Should reminders repeat every 60 minutes until you check in?" } }] },
+      { "send": { "callback": "habit:repeat:yes" }, "expect": [{ "method": "editMessageText", "payload": { "text": "Read is ready. Reminder: 09:00." } }] },
+      { "send": { "callback": "habit:done:h1" }, "expect": [{ "method": "editMessageText", "payload": { "text": "Read checked in. Current streak: 1." } }] },
+      { "send": { "callback": "habit:done:h1" }, "expect": [{ "method": "editMessageText", "payload": { "text": "Read is already checked in for today." } }] }
     ]
   }
 ]
