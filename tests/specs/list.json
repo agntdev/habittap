@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Show all active habits with today's status and next reminder"
+              "text": "No active habits yet — tap New habit to add one."
             }
           }
         ],
